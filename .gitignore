@@ -1,0 +1,8 @@
+/build/
+/dist/
+/mypgenv/
+/help.spec
+/main.spec
+/main_game_script.spec
+/test.spec
+/.idea/
