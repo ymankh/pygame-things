@@ -11,23 +11,27 @@ import pygame
 #         base_path = os.path.abspath(".")
 #
 #     return os.path.join(base_path, relative_path)
-
+WINDOW_LENGTH = 1000
+WINDOW_HIGHT = 600
 pygame.init()
-tail_length = 500
-window = pygame.display.set_mode((300, 300))
+tail_length = 300
+num_of_lines = 10
+window = pygame.display.set_mode((WINDOW_LENGTH, WINDOW_HIGHT))
 clock = pygame.time.Clock()
 FBS = 90
 clock.tick(FBS)
 run = True
 j = 0
 
-places = [(100, 100), ]
-for _ in range(100):
-    places.append((random.randint(100, 200), random.randint(100, 200)))
-places.append((100, 100))
+# Set the starting possetion of the lines.
+start = (WINDOW_LENGTH // 2, WINDOW_HIGHT // 2)
+places = [start, ]
+for _ in range(20):
+    places.append((random.randint(0, 600), random.randint(0, 600)))
+places.append(start)
 length = 10
 distances = []
-color = (225, 255, 255)
+color = (25, 200, 25)
 points = []
 
 
@@ -62,10 +66,10 @@ while run:
             run = False
     window.fill(0)
     for degree, j in enumerate(range(i - tail_length, i)):
-        for k in range(-10, 11, 10):
+        for k in range(num_of_lines * -1, num_of_lines , 2):
             window.set_at([i + k for i in points[j]],
-                          (int((degree * 225) / tail_length), int((degree * 100) / tail_length),
-                           int((degree * 100) / tail_length),))
+                          (int((degree * color[0]) / tail_length), int((degree * color[1]) / tail_length),
+                           int((degree * color[2]) / tail_length),))
     pygame.display.flip()
     clock.tick(FBS)
 

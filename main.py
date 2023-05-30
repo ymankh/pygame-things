@@ -109,10 +109,10 @@ if __name__ == '__main__':
         for button in buttons:
             button.draw()
         for event in pg.event.get():
-            for button in buttons:
+            for i, button in enumerate(buttons):
                 button.check_for_hovering(event)
                 if button.check_for_click(event):
-                    print("click")
+                    print("button" + str(i+1))
             if event.type == pg.QUIT:
                 pg.quit()
                 run = False
